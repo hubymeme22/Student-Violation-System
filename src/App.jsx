@@ -1,14 +1,18 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { GlobalStyles } from './theme/globalStyles';
+import { ThemeProvider } from 'styled-components';
 
 // Pages
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 
+// Theme
+import { theme } from './theme/theme';
+
 function App() {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Routes>
         {/* Login Route */}
@@ -17,7 +21,7 @@ function App() {
         {/* Invalid Route */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>
+    </ThemeProvider>
   );
 }
 
