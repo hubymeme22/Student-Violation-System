@@ -1,11 +1,14 @@
 import React from 'react';
 import Sidebar from '../../layouts/Sidebar/desktop';
-import { Container } from '../../layouts/Container.styled';
+import { Container, ContentContainer } from '../../layouts/Container.styled';
 
 function Dashboard() {
   return (
     <Container>
       <Sidebar />
+      <ContentContainer>
+        <h1>Dashboard</h1>
+      </ContentContainer>
     </Container>
   );
 }

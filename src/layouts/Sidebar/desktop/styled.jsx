@@ -68,7 +68,7 @@ export const LinkContainer = styled.nav`
 
 export const StyledDiv = styled.div`
   margin: 0 auto;
-  width: 50%;
+  width: 75%;
   display: flex;
   align-items: center;
   gap: 1em;
@@ -76,7 +76,7 @@ export const StyledDiv = styled.div`
   svg {
     color: inherit;
     pointer-events: none;
-    font-size: 25px;
+    font-size: 20px;
   }
 
   a {
