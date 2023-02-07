@@ -10,5 +10,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     background-color: #333;
+    min-height: 100vh;
   }
 `;
