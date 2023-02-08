@@ -1,5 +1,5 @@
-import React from 'react';
-import DesktopSideBar from './desktop/';
+import React from "react";
+import DesktopSideBar from "./desktop";
 
 function Sidebar() {
   return (
