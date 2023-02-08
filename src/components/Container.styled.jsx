@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 1em;
@@ -12,4 +12,15 @@ export const ContentContainer = styled.div`
   width: 100%;
   border-radius: 25px;
   padding: 1em;
+`;
+
+export const DashboardContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
 `;

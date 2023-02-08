@@ -1,8 +1,8 @@
 import React from "react";
-import Sidebar from "../../layouts/Sidebar/desktop";
-import { Container, ContentContainer } from "../../layouts/Container.styled";
+import Sidebar from "../../components/sidebar/desktop";
+import { Container, ContentContainer } from "../../components/Container.styled";
 import { Chart } from "react-chartjs-2";
-import ViolationChart from "../../layouts/components/ViolationChart";
+import ViolationChart from "../../components/chart/ViolationChart";
 
 function Dashboard() {
   return (
