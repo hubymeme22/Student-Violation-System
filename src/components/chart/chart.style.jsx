@@ -71,7 +71,6 @@ export const StyledBar = styled.div`
   width: 900px;
   height: 300px;
 `;
-
 export const titleCon = styled.div`
   display: flex;
   flex-direction: column;
