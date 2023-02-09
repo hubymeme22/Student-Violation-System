@@ -30,6 +30,7 @@ export const Students = styled.div`
   justify-content: center;
   font-family: "Poppins", sans-serif;
   font-size: 12px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   svg {
     font-size: 60px;
   }
@@ -49,6 +50,7 @@ export const Violations = styled.div`
   gap: 20px;
   font-family: "Poppins", sans-serif;
   font-size: 12px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   svg {
     font-size: 60px;
   }
@@ -68,4 +70,9 @@ export const StyledBar = styled.div`
   align-items: center;
   width: 900px;
   height: 300px;
+`;
+export const titleCon = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 `;

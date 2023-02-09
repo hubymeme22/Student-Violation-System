@@ -8,26 +8,21 @@ import {
   StyledBar,
   Username,
   Violations,
+  titleCon,
 } from "./chart.style";
 import { CgProfile } from "react-icons/cg";
 import { TiWarningOutline } from "react-icons/ti";
 
 function ViolationChart() {
-  const styles = {
-    display: "flex",
-    width: "60%",
-    flexDirection: "column",
-    alignItems: "flexStart",
-  };
   return (
     <DashboardContainer>
-      <div style={styles}>
+      <titleCon>
         <DashTitle>RECORD SYSTEM DASHBOARD</DashTitle>
         <Username>Welcome Back Poul!</Username>
-      </div>
-      <StyledBar>
-        <BarChart />
-      </StyledBar>
+      </titleCon>
+
+      <BarChart />
+
       <Log>
         <Students>
           <CgProfile />
