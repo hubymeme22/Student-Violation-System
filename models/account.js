@@ -16,6 +16,11 @@ const accountSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  accountDetails: {
+    type: String,
+    required: true,
+    enum: ["faculty", "admin"]
   }
 }, { timestamps: true });
 
