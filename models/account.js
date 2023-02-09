@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+// define properties for accounts.
 const accountSchema = new Schema({
   username: {
     type: String,
@@ -16,11 +16,7 @@ const accountSchema = new Schema({
   password: {
     type: String,
     required: true
-  },
-//   createdAt: {
-//     type: Date,
-//     default: Date.now
-//   }
+  }
 }, { timestamps: true });
 
 const Account = mongoose.model('Account', accountSchema);
