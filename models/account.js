@@ -17,7 +17,7 @@ const accountSchema = new Schema({
     type: String,
     required: true
   },
-  accountDetails: {
+  accountAccess: {
     type: String,
     required: true,
     enum: ["faculty", "admin"]
