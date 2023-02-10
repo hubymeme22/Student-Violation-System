@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const SideContainer = styled.div`
   background-color: ${({ theme }) => theme.red};

@@ -3,14 +3,17 @@ import Chart from "chart.js/auto";
 
 import { Bar } from "react-chartjs-2";
 import { ViolationData } from "../../datas//ViolationDatas";
+import { MyChart } from "./chart.style";
 function BarChart() {
   const [chart, setChart] = React.useState({
     labels: ViolationData.map((monthData) => monthData.month),
+
     datasets: [
       {
         label: "2023 Violations Record",
         data: ViolationData.map((violationData) => violationData.violations),
         hoverBackgroundColor: "red",
+
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -33,7 +36,32 @@ function BarChart() {
       },
     ],
   });
-  return <Bar data={chart} height={180} width={600} />;
+  return (
+    <MyChart>
+      <Bar
+        data={chart}
+        height={300}
+        width={600}
+        options={{
+          maintainAspectRatio: false,
+
+          color: "white",
+          scales: {
+            x: {
+              ticks: {
+                color: "white",
+              },
+            },
+            y: {
+              ticks: {
+                color: "white",
+              },
+            },
+          },
+        }}
+      />
+    </MyChart>
+  );
 }
 
 export default BarChart;

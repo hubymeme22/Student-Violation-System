@@ -11,16 +11,18 @@ export const ContentContainer = styled.div`
   background-color: #e4e4e4;
   width: 100%;
   border-radius: 25px;
-  padding: 1em;
-`;
-
-export const DashboardContainer = styled.div`
   height: 100%;
-  width: 100%;
+  padding: 1em;
+  gap: 50px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 50px;
 
-  padding: 20px;
-  gap: 30px;
+  @media screen and (max-width: 768px) {
+    gap: 10px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+  }
 `;

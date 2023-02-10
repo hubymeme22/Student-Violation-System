@@ -1,6 +1,6 @@
 import React from "react";
 import BarChart from "./BarChart";
-import { DashboardContainer } from "../Container.styled";
+
 import {
   DashTitle,
   Log,
@@ -8,19 +8,19 @@ import {
   StyledBar,
   Username,
   Violations,
-  titleCon,
+  ChartTitle,
 } from "./chart.style";
 import { CgProfile } from "react-icons/cg";
 import { TiWarningOutline } from "react-icons/ti";
+import { ContentContainer } from "../Container.styled";
 
 function ViolationChart() {
   return (
-    <DashboardContainer>
-      <titleCon>
+    <ContentContainer>
+      <ChartTitle>
         <DashTitle>RECORD SYSTEM DASHBOARD</DashTitle>
         <Username>Welcome Back Poul!</Username>
-      </titleCon>
-
+      </ChartTitle>
       <BarChart />
 
       <Log>
@@ -33,7 +33,7 @@ function ViolationChart() {
           Total Violations: 2
         </Violations>
       </Log>
-    </DashboardContainer>
+    </ContentContainer>
   );
 }
 

@@ -8,9 +8,7 @@ function Dashboard() {
   return (
     <Container>
       <Sidebar />
-      <ContentContainer>
-        <ViolationChart />
-      </ContentContainer>
+      <ViolationChart />
     </Container>
   );
 }
