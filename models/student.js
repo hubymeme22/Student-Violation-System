@@ -14,59 +14,57 @@ const studentSchema = new Schema({
     unique: true
   },
   studentDetails: {
-    type: Object,
-    required: true
-  },
-  contact: {
-    type: String,
-    required: true
-  },
-  birthDate: {
-    type: Date,
-    required: true
-  },
-  sex: {
-    type: String,
-    required: true,
-    enum: ['Male', 'Female', 'Other']
-  },
-  fullName: {
-    first: {
+    contact: {
       type: String,
       required: true
     },
-    middle: {
-      type: String
-    },
-    last: {
-      type: String,
-      required: true
-    }
-  },
-  familyContact: {
-    fatherFullName: {
-      type: String,
+    birthDate: {
+      type: Date,
       required: true
     },
-    fatherContactNumber: {
+    sex: {
       type: String,
-      required: true
+      required: true,
+      enum: ['Male', 'Female', 'Other']
     },
-    motherFullName: {
-      type: String,
-      required: true
+    fullName: {
+      first: {
+        type: String,
+        required: true
+      },
+      middle: {
+        type: String
+      },
+      last: {
+        type: String,
+        required: true
+      }
     },
-    motherContactNumber: {
-      type: String,
-      required: true
-    },
-    guardianFullName: {
-      type: String,
-      required: true
-    },
-    guardianContactNumber: {
-      type: String,
-      required: true
+    familyContact: {
+      fatherFullName: {
+        type: String,
+        required: true
+      },
+      fatherContactNumber: {
+        type: String,
+        required: true
+      },
+      motherFullName: {
+        type: String,
+        required: true
+      },
+      motherContactNumber: {
+        type: String,
+        required: true
+      },
+      guardianFullName: {
+        type: String,
+        required: true
+      },
+      guardianContactNumber: {
+        type: String,
+        required: true
+      }
     }
   },
   violations: [{
