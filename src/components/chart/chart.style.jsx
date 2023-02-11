@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import PieChart from "./PieChart";
 // export const BarChart = styled.div`
 //   display: flex;
 //   justify-content: center;
@@ -15,6 +15,11 @@ export const MyChart = styled.div`
 
   @media screen and (max-width: 768px) {
     height: 45%;
+    width: 100%;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 5px;
+    height: 40%;
     width: 100%;
   }
 `;
@@ -56,12 +61,21 @@ export const Students = styled.div`
   }
 
   @media screen and (max-width: 768px) {
+    height: 150px;
+    width: 200px;
+    font-size: 10px;
+    gap: 10px;
+    svg {
+      font-size: 40px;
+    }
+  }
+  @media screen and (max-width: 500px) {
     height: 100px;
     width: 150px;
     font-size: 10px;
     gap: 10px;
     svg {
-      font-size: 40px;
+      font-size: 30px;
     }
   }
 `;
@@ -86,12 +100,21 @@ export const Violations = styled.div`
   }
 
   @media screen and (max-width: 768px) {
+    height: 150px;
+    width: 200px;
+    font-size: 10px;
+    gap: 10px;
+    svg {
+      font-size: 40px;
+    }
+  }
+  @media screen and (max-width: 500px) {
     height: 100px;
     width: 150px;
     font-size: 10px;
     gap: 10px;
     svg {
-      font-size: 40px;
+      font-size: 30px;
     }
   }
 `;
@@ -105,12 +128,17 @@ export const Log = styled.div`
   padding: 50px;
 
   @media screen and (max-width: 768px) {
-    padding: 10px;
-    gap: 15px;
+    padding: 70px;
+    gap: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+  }
+  @media screen and (max-width: 500px) {
+    justify-content: flex-start;
+    padding: 40px;
+    gap: 15px;
   }
 `;
 export const StyledBar = styled.div`
@@ -126,5 +154,9 @@ export const ChartTitle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 30px;
+  }
+  @media screen and (max-width: 500px) {
+    padding: 30px;
   }
 `;

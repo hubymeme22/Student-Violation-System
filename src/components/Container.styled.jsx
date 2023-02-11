@@ -25,4 +25,7 @@ export const ContentContainer = styled.div`
     justify-content: center;
     align-items: center;
   }
+  @media screen and (max-width: 500px) {
+    padding: 15px;
+  }
 `;

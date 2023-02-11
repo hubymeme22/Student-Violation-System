@@ -4,7 +4,7 @@ import Chart from "chart.js/auto";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import { ViolationData } from "../../datas//ViolationDatas";
 import { MyChart } from "./chart.style";
-function BarChart() {
+function BarChart(props) {
   const [chart, setChart] = React.useState({
     labels: ViolationData.map((monthData) => monthData.month),
 
@@ -38,7 +38,7 @@ function BarChart() {
   });
   return (
     <MyChart>
-      <Line
+      <Pie
         data={chart}
         height={300}
         width={600}
