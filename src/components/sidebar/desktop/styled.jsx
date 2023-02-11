@@ -1,10 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SideContainer = styled.div`
   background-color: ${({ theme }) => theme.red};
   color: white;
   width: 320px;
-  height: 100%;
   border-radius: 25px;
 
   display: flex;
