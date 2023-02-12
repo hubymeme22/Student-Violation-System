@@ -1,12 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Chart from 'chart.js/auto';
 
 import { Bar, Line } from 'react-chartjs-2';
-import { ViolationData } from '../../datas//ViolationDatas';
 
-function BarChart() {
+function BarChart({ data }) {
   const [chart, setChart] = useState(configuration);
+
+  // Adjust data when it retrieves the values
+  useEffect(() => {
+    if (!data) return;
+    console.log(data);
+
+    setChart((config) => {
+      // console.log('data');
+      const datasetsConfig = config.datasets[0];
+      const monthSummary = data.monthSummary;
+
+      return {
+        ...config,
+        labels: monthSummary.map(({ month }) => month),
+        datasets: [
+          {
+            ...datasetsConfig,
+            data: monthSummary.map(({ violations }) => violations),
+          },
+        ],
+      };
+    });
+  }, [data]);
 
   return (
     <StyledChart>
@@ -19,15 +41,10 @@ export default BarChart;
 
 // Chart Configuration
 const configuration = {
-  // Set the desired data
-  labels: ViolationData.map((monthData) => monthData.month),
-
   datasets: [
     {
       label: '2023 Violations Record',
-      data: ViolationData.map((violationData) => violationData.violations),
       hoverBackgroundColor: 'red',
-
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -45,7 +62,6 @@ const configuration = {
         'rgba(255, 159, 64, 1)',
       ],
       borderWidth: 1,
-
       minBarLength: 2,
     },
   ],

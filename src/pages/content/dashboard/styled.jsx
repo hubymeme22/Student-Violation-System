@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ContentContainer as ContentCont } from '../../components/containers/Container.styled';
+import { ContentContainer as ContentCont } from '../../../components/containers/Container.styled';
 
 export const ContentContainer = styled(ContentCont)`
   display: flex;
