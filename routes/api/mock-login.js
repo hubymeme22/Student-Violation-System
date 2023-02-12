@@ -2,8 +2,8 @@ import { Router } from "express";
 
 const login = Router();
 login.post('/', (req, res) => {
-    const username = req.username;
-    const password = req.password;
+    const username = req.body.username;
+    const password = req.body.password;
 
     if (username == 'kenneth' && password == 'Jello123!') {
         res.json({
