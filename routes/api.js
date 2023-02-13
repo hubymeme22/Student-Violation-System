@@ -1,5 +1,5 @@
 import { Router } from "express";
-import login from "./api/mock-login.js";
+import login from "./api/login.js";
 import student from "./api/mock-student-data.js";
 import summary from "./api/mock-summary.js";
 
