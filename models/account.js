@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 // define properties for accounts.
 const accountSchema = new Schema({
@@ -7,12 +7,6 @@ const accountSchema = new Schema({
     required: true,
     unique: true
   },
-// Need ba itu?
-//   email: {
-//     type: String,
-//     required: true,
-//     unique: true
-//   },
   password: {
     type: String,
     required: true
@@ -25,5 +19,4 @@ const accountSchema = new Schema({
 }, { timestamps: true });
 
 const Account = mongoose.model('Account', accountSchema);
-
-module.exports = Account;
+export default Account;
