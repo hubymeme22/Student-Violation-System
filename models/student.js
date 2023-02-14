@@ -13,6 +13,10 @@ const studentSchema = new Schema({
     required: true,
     unique: true
   },
+  adviser: {
+    type: String,
+    required: true
+  },
   studentDetails: {
     contact: {
       type: String,
