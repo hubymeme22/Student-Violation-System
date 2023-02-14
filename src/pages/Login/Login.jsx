@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logoPath from '../../assets/BSU-Logo.png';
 
 import {
@@ -13,9 +13,19 @@ import {
 
 import { FaUserCircle, FaKey } from 'react-icons/fa';
 
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../App';
+
 function Login() {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const loginHandler = (e) => {
     e.preventDefault();
+
+    auth.loginHandler(true);
+
+    navigate('/dashboard');
   };
 
   return (
