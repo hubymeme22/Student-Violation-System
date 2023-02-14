@@ -21,7 +21,6 @@ function DashboardContent() {
       .then((res) => {
         const dataset = res.data;
         setSummary(dataset);
-        console.log(dataset);
       })
       .catch((err) => {
         console.log(err);
