@@ -21,6 +21,7 @@ function DashboardContent() {
       .then((res) => {
         const dataset = res.data;
         setSummary(dataset);
+        console.log(dataset);
       })
       .catch((err) => {
         console.log(err);
@@ -45,14 +46,14 @@ function DashboardContent() {
           bgColor={'green'}
           type={'Students'}
           icon={<CgProfile />}
-          amount={69}
+          amount={summary ? summary.studentsCount : 0}
         />
 
         {/* Violations */}
         <DashboardCard
           type={'Violations'}
           icon={<TiWarningOutline />}
-          amount={2}
+          amount={summary ? summary.violationCount : 0}
         />
       </Summary>
     </ContentContainer>
