@@ -12,7 +12,7 @@ function Dashboard() {
   const auth = useAuth();
 
   useEffect(() => {
-    if (!auth.user) {
+    if (!auth.token) {
       navigate('/login');
     }
   }, []);

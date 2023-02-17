@@ -43,15 +43,15 @@ function Login() {
     setError(response.msg);
 
     if (response.loggedIn) {
+      navigate('/');
     }
-    // navigate('/');
   };
 
   useEffect(() => {
-    if (auth.user) {
-      navigate('/dashboard');
+    if (auth.token) {
+      navigate('/');
     }
-  }, []);
+  });
 
   return (
     <Container>
