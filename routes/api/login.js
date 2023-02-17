@@ -12,6 +12,7 @@ login.post('/', (req, res) => {
         'loggedIn': false,
         'existingEmail': false,
         'error': 'param_not_set',
+        'msg': '',
         'token': null
     };
 
@@ -23,17 +24,19 @@ login.post('/', (req, res) => {
     DBConnection.setAcceptCallback((userdata) => {
         if (userdata == null) {
             responseFormat['error'] = null;
+            responseFormat['msg'] = 'Email does not exist';
             return res.json(responseFormat);
         }
 
         responseFormat['error'] = null;
         responseFormat['existingEmail'] = true;
+        responseFormat['msg'] = 'Wrong Password';
 
         // adjust the response values when logged in
         if (userdata.password == req.body.password) {
             // generate a token without the actual password in it
             userdata['password'] = 'secret';
-
+            responseFormat['msg'] = 'Logged in';
             responseFormat['token'] = jwt.sign({userdata}, process.env.SECRET_KEY);
             responseFormat['loggedIn'] = true;
         }
