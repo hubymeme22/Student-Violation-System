@@ -1,4 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useInput from '../../hooks/useInput';
+
 import logoPath from '../../assets/BSU-Logo.png';
 
 import {
@@ -9,24 +12,46 @@ import {
   Input,
   LoginBtn,
   InputContainer,
+  Error,
 } from './styled';
 
 import { FaUserCircle, FaKey } from 'react-icons/fa';
 
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../App';
+// Context
+import { useAuth } from '../../hooks/useAuth';
 
 function Login() {
-  const auth = useContext(AuthContext);
-  const navigate = useNavigate();
+  const [username, usernameBinder, resetUsername] = useInput('');
+  const [password, passwordBinder, resetPassword] = useInput('');
+  const [error, setError] = useState(null);
 
-  const loginHandler = (e) => {
+  const navigate = useNavigate();
+  const auth = useAuth();
+
+  const loginHandler = async (e) => {
     e.preventDefault();
 
-    auth.loginHandler(true);
+    // Check if both fields are not empty
+    if (!username || !password) {
+      setError('Please enter all fields');
+      return;
+    } else {
+      setError(null);
+    }
 
-    navigate('/dashboard');
+    let response = await auth.login(username, password);
+    setError(response.msg);
+
+    if (response.loggedIn) {
+    }
+    // navigate('/');
   };
+
+  useEffect(() => {
+    if (auth.user) {
+      navigate('/dashboard');
+    }
+  }, []);
 
   return (
     <Container>
@@ -35,14 +60,16 @@ function Login() {
         <Title>VIOLATION SYSTEM LOGIN</Title>
 
         <InputContainer>
-          <Input type="text" placeholder="Username" />
+          <Input type="text" placeholder="Username" {...usernameBinder} />
           <FaUserCircle />
         </InputContainer>
 
         <InputContainer>
-          <Input type="password" placeholder="Password" />
+          <Input type="password" placeholder="Password" {...passwordBinder} />
           <FaKey />
         </InputContainer>
+
+        {error && <Error>{error}</Error>}
 
         <LoginBtn onClick={loginHandler}>LOGIN</LoginBtn>
       </Form>

@@ -1,20 +1,18 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Sidebar from '../../components/sidebar/desktop';
 
 import { Container } from '../../components/containers/Container.styled';
 import DashboardContent from '../content/dashboard';
 
-import { AuthContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
 function Dashboard() {
-  const auth = useContext(AuthContext);
   const navigate = useNavigate();
-
-  console.log(auth.isLoggedIn);
+  const auth = useAuth();
 
   useEffect(() => {
-    if (!auth.isLoggedIn) {
+    if (!auth.user) {
       navigate('/login');
     }
   }, []);

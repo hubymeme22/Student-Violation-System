@@ -11,11 +11,10 @@ import Dashboard from './pages/Dashboard';
 // Theme
 import { theme } from './theme/theme';
 
-export const AuthContext = React.createContext(null);
+// Context
+import { AuthProvider } from './hooks/useAuth';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   useEffect(() => {
     // CHECK TOKEN (in cookies & localstorage)
     // If token is valid => isLoggedIn to true
@@ -23,9 +22,7 @@ function App() {
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ isLoggedIn: isLoggedIn, loginHandler: setIsLoggedIn }}
-    >
+    <AuthProvider>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Routes>
@@ -42,7 +39,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ThemeProvider>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 
