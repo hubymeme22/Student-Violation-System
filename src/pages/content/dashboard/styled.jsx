@@ -1,6 +1,5 @@
-import styled from "styled-components";
-
-import { ContentContainer as ContentCont } from "../../../components/containers/Container.styled";
+import styled from 'styled-components';
+import { ContentContainer as ContentCont } from '../../../components/Container';
 
 export const ContentContainer = styled(ContentCont)`
   display: flex;
@@ -9,7 +8,7 @@ export const ContentContainer = styled(ContentCont)`
 `;
 
 export const Title = styled.p`
-  font-family: "Staatliches", "Poppins", sans-serif;
+  font-family: 'Staatliches', 'Poppins', sans-serif;
   font-size: 35px;
 
   @media screen and (max-width: 768px) {
@@ -18,7 +17,7 @@ export const Title = styled.p`
 `;
 
 export const Greetings = styled.p`
-  font-family: "Staatliches", "Poppins", sans-serif;
+  font-family: 'Staatliches', 'Poppins', sans-serif;
   font-size: 25px;
 
   @media screen and (max-width: 768px) {
