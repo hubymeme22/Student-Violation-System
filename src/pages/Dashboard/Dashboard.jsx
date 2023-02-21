@@ -1,22 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Sidebar from '../../components/sidebar/desktop';
 
-import { Container } from '../../components/containers/Container.styled';
+import { Container } from '../../components/Container';
 import DashboardContent from '../content/dashboard';
 
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-
 function Dashboard() {
-  const navigate = useNavigate();
-  const auth = useAuth();
-
-  useEffect(() => {
-    if (!auth.token) {
-      navigate('/login');
-    }
-  }, []);
-
   return (
     <Container>
       <Sidebar />
