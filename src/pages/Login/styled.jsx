@@ -75,3 +75,8 @@ export const LoginBtn = styled.button`
   box-shadow: 5px 12px 4px -6px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 `;
+
+export const Error = styled.p`
+  color: rgb(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+`;
