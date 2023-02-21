@@ -6,7 +6,8 @@
 import Account from '../models/account.js';
 import Student from '../models/student.js';
 
-export default class MongoDBConnection {
+// contains public-accessible operations on the server
+export class MongoDBConnection {
     constructor() {
         this.acceptCallback;
         this.rejectCallback;
@@ -19,6 +20,7 @@ export default class MongoDBConnection {
     setAcceptCallback(callback=this.acbFormat) {
         this.acceptCallback = callback;
     }
+
     // sets callback for: when database failed to do the method below
     setRejectCallback(callback=this.rcbFormat) {
         this.rejectCallbck = callback;
@@ -31,6 +33,16 @@ export default class MongoDBConnection {
         Account.findOne({ 'username': username })
             .then(this.acceptCallback)
             .catch(this.rejectCallback);
+    }
+}
+
+// Implementation that requires tokens before executing operations
+export class SecuredMongoDBConnection extends MongoDBConnection {
+
+    // added verified json for filtering
+    constructor(userVerifiedJSON) {
+        super();
+        this.userJSON = userVerifiedJSON;
     }
 
     // saves a new faculty account
@@ -46,7 +58,7 @@ export default class MongoDBConnection {
             .catch(this.rejectCallback);
     }
 
-    // saves a new faculty account
+    // saves a new admin faculty account
     signUpAdmin(username, password) {
         const addAccount = new Account({
             'username': username,
@@ -61,14 +73,24 @@ export default class MongoDBConnection {
 
     // gets the student summary details
     getStudentSummary() {
-        Student.find().select('username email details.fullname')
-            .then(this.acceptCallback)
-            .catch(this.rejectCallbck);
+        if (this.userJSON.accountAccess != "admin") {
+            Student.find({ adviser: this.userJSON.username }).select('username email details.fullname')
+                .then(this.acceptCallback)
+                .catch(this.rejectCallbck);
+        } else {
+            Student.find().select('username email details.fullname')
+                .then(this.acceptCallback)
+                .catch(this.rejectCallbck);
+        }
     }
 
     // gets all the data on specific student
     getStudentData(username) {
-        Student.find({ username: username })
+        let query = { username: username };
+        if (this.userJSON.accountAccess != "admin")
+            query['adviser'] = this.userJSON.username;
+
+        Student.find(query)
             .then(this.acceptCallback)
             .catch(this.rejectCallbck);
     }
