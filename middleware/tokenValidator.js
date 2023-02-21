@@ -12,7 +12,7 @@ export function validateGET(req, res, next) {
     try {
         // check if this is signed
         const userdata = jwt.verify(req.cookies.token, secretKey);
-        req.allowedData = userdata;
+        req.allowedData = userdata.userdata;
         next();
     } catch (error) {
         console.log(error);
@@ -28,7 +28,7 @@ export function validatePOST(req, res, next) {
     try {
         // check if this is signed
         const userdata = jwt.verify(req.body.token, secretKey);
-        req.allowedData = userdata;
+        req.allowedData = userdata.userdata;
         next();
     } catch (error) {
         return res.json({ 'error': 'invalid_token' }).status(403);
