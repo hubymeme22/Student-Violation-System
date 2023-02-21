@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { useState, createContext, useContext } from 'react';
-import { checkToken, saveToken } from '../utils/tokenHandler';
+import { checkToken, saveToken, clearToken } from '../utils/tokenHandler';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(checkToken());
+  const navigate = useNavigate();
 
   const login = async (username, password) => {
     return await axios
@@ -14,11 +16,11 @@ export const AuthProvider = ({ children }) => {
         password: password,
       })
       .then((res) => {
-        const token = res.data.token;
+        const resToken = res.data.token;
 
-        if (token) {
-          setToken(token);
-          saveToken(token);
+        if (resToken) {
+          setToken(resToken);
+          saveToken(resToken);
         }
 
         return res.data;
@@ -27,7 +29,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    //
+    setToken(null);
+    clearToken();
+    navigate('/login');
   };
 
   return (

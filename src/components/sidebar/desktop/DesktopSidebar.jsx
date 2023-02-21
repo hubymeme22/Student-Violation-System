@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../../hooks/useAuth';
 
 import {
   SideContainer,
@@ -19,47 +20,47 @@ import { GiGraduateCap } from 'react-icons/gi';
 import { RiFileList3Line } from 'react-icons/ri';
 
 function DesktopSideBar() {
+  const auth = useAuth();
+
   return (
-    <>
-      <SideContainer>
-        <section>
-          <UserInfo>
-            <UserIcon />
-            <Username>Username</Username>
-            <Name>Poul De Chavez</Name>
-          </UserInfo>
+    <SideContainer>
+      <section>
+        <UserInfo>
+          <UserIcon />
+          <Username>Username</Username>
+          <Name>Poul De Chavez</Name>
+        </UserInfo>
 
-          <LinkContainer>
-            <StyledLink>
-              <StyledDiv>
-                <MdDashboard />
-                <NavLink to="/">Dashboard</NavLink>
-              </StyledDiv>
-            </StyledLink>
+        <LinkContainer>
+          <StyledLink>
+            <StyledDiv>
+              <MdDashboard />
+              <NavLink to="/">Dashboard</NavLink>
+            </StyledDiv>
+          </StyledLink>
 
-            <StyledLink>
-              <StyledDiv>
-                <GiGraduateCap />
-                <NavLink to="/students">Students</NavLink>
-              </StyledDiv>
-            </StyledLink>
+          <StyledLink>
+            <StyledDiv>
+              <GiGraduateCap />
+              <NavLink to="/students">Students</NavLink>
+            </StyledDiv>
+          </StyledLink>
 
-            <StyledLink>
-              <StyledDiv>
-                <RiFileList3Line />
-                <NavLink to="/records">Records</NavLink>
-              </StyledDiv>
-            </StyledLink>
-          </LinkContainer>
-        </section>
+          <StyledLink>
+            <StyledDiv>
+              <RiFileList3Line />
+              <NavLink to="/records">Records</NavLink>
+            </StyledDiv>
+          </StyledLink>
+        </LinkContainer>
+      </section>
 
-        <AccountContainer>
-          {/* Button */}
-          <button>Account</button>
-          <button>Log Out</button>
-        </AccountContainer>
-      </SideContainer>
-    </>
+      <AccountContainer>
+        {/* Button */}
+        <button>Account</button>
+        <button onClick={auth.logout}>Log Out</button>
+      </AccountContainer>
+    </SideContainer>
   );
 }
 

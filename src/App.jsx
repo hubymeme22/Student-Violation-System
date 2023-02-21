@@ -31,7 +31,6 @@ function App() {
 
           {/* Pages Route */}
           <Route path="/" element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/students" element={<Dashboard />} />
           <Route path="/records" element={<Dashboard />} />
 
