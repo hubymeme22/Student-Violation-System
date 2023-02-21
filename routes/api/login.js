@@ -1,7 +1,7 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 
-import MongoDBConnection from "../../modules/DBConnection.js"
+import { MongoDBConnection } from "../../modules/DBConnection.js"
 import paramCheck from "../../modules/paramChecker.js";
 
 const DBConnection = new MongoDBConnection();
