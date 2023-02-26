@@ -3,7 +3,7 @@ import { validatePOST } from "../../../../middleware/tokenValidator.js";
 import { SecuredMongoDBConnection } from "../../../../modules/DBConnection.js";
 import paramCheck from "../../../../modules/paramChecker.js";
 
-createStudent = Router();
+const createStudent = Router();
 createStudent.post('/', validatePOST, (req, res) => {
     // this route must only be accessed by the admin and no other else
     const responseFormat = {
@@ -21,9 +21,10 @@ createStudent.post('/', validatePOST, (req, res) => {
     }
 
     // otherwise, this must be admin
+    // note: birthdate parser will be added soon
     if (paramCheck(req.body, [
         'username', 'email', 'adviser',
-        'contact', 'birthdate', 'sex',
+        'contact', 'sex',
         'firstname', 'middlename', 'lastname',
         'fatherfullname', 'fathercontact',
         'motherfullname', 'mothercontact'])) {
@@ -32,12 +33,14 @@ createStudent.post('/', validatePOST, (req, res) => {
         const rbody = req.body;
         const schemaFormat = {
             username: rbody.username,
+            email: rbody.email,
             password: rbody.password,
             adviser: rbody.adviser,
 
             studentDetails: {
                 contact: rbody.contact,
-                birthDate: rbody.birthdate,
+                // will be updated soon
+                birthDate: new Date(),
                 sex: rbody.sex,
 
                 fullName: {
@@ -50,7 +53,11 @@ createStudent.post('/', validatePOST, (req, res) => {
                     fatherFullName: rbody.fatherfullname,
                     fatherContactNumber: rbody.fathercontact,
                     motherFullName: rbody.motherfullname,
-                    motherContactNumber: rbody.mothercontact
+                    motherContactNumber: rbody.mothercontact,
+
+                    // will be updated soon
+                    guardianFullName: 'sample',
+                    guardianContactNumber: 'sample'
                 },
                 violations: []
             }
@@ -71,6 +78,7 @@ createStudent.post('/', validatePOST, (req, res) => {
         });
 
         securedDB.setRejectCallback((error) => {
+            console.log(error);
             responseFormat.status = 'not_created';
             responseFormat.error = error;
             res.json(responseFormat).status(400);
@@ -80,3 +88,5 @@ createStudent.post('/', validatePOST, (req, res) => {
     }
 
 });
+
+export default createStudent;

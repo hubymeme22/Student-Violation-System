@@ -102,8 +102,9 @@ export class SecuredMongoDBConnection extends MongoDBConnection {
         if (this.userJSON.accountAccess != 'admin')
             return this.rejectCallback('InvalidPermission');
 
-        Student.find(studentJSONData.username)
+        Student.findOne({ username: studentJSONData.username })
             .then((studentData) => {
+                console.log(studentData);
                 if (studentData == null) {
                     const insertStudent = new Student(studentJSONData);
                     insertStudent.save()

@@ -1,7 +1,10 @@
 import { Router } from "express";
+
 import login from "./api/login.js";
 import student from "./api/student-data.js";
 import summary from "./api/mock-summary.js";
+
+import createStudent from "./api/crud/student/create-student.js";
 
 const router = Router();
 router.get('/', (req, res) => {
@@ -22,7 +25,7 @@ router.use('/summary', summary);
 // router.use('/violation/delete');
 
 // // These crud functionalities needs admin access
-// router.use('/student/create');
+router.use('/student/create', createStudent);
 // router.use('/student/delete');
 // router.use('/student/update');
 
