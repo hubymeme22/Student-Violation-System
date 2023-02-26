@@ -23,7 +23,7 @@ export class MongoDBConnection {
 
     // sets callback for: when database failed to do the method below
     setRejectCallback(callback=this.rcbFormat) {
-        this.rejectCallbck = callback;
+        this.rejectCallback = callback;
     }
 
     // checks for existence of email on account collection
@@ -76,11 +76,11 @@ export class SecuredMongoDBConnection extends MongoDBConnection {
         if (this.userJSON.accountAccess != "admin") {
             Student.find({ adviser: this.userJSON.username }).select('username email details.fullname')
                 .then(this.acceptCallback)
-                .catch(this.rejectCallbck);
+                .catch(this.rejectCallback);
         } else {
             Student.find().select('username email details.fullname')
                 .then(this.acceptCallback)
-                .catch(this.rejectCallbck);
+                .catch(this.rejectCallback);
         }
     }
 
@@ -92,6 +92,30 @@ export class SecuredMongoDBConnection extends MongoDBConnection {
 
         Student.find(query)
             .then(this.acceptCallback)
-            .catch(this.rejectCallbck);
+            .catch(this.rejectCallback);
+    }
+
+    ///////////////////////////////
+    //  student crud operations  //
+    ///////////////////////////////
+    createStudent(studentJSONData) {
+        if (this.userJSON.accountAccess != 'admin')
+            return this.rejectCallback('InvalidPermission');
+
+        Student.find(studentJSONData.username)
+            .then((studentData) => {
+                if (studentData == null) {
+                    const insertStudent = new Student(studentJSONData);
+                    insertStudent.save()
+                        .then(this.acceptCallback)
+                        .catch(this.rejectCallback);
+                } else {
+                    // this means that there's an existing
+                    // student account w/same username
+                    this.acceptCallback({});
+                }
+            })
+
+            .catch(this.rejectCallback)
     }
 }
